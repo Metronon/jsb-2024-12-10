@@ -12,6 +12,6 @@ public class QuestionForm {
     @Size(max=200)
     private String subject;
 
-    @NotEmpty(message="본문은 빈칸으로 제출할 수 없습니다.")
+    @NotEmpty(message="내용은 빈칸으로 제출할 수 없습니다.")
     private String content;
 }
