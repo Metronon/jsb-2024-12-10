@@ -1,9 +1,14 @@
 package com.mysite.sbb.question;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -35,10 +40,16 @@ public class QuestionController {
 
     @PostMapping("/create")
     public String QuestionCreate(
-            @RequestParam(value="subject") String subject,
-            @RequestParam(value="content") String content
+            @Valid QuestionForm questionForm,
+            BindingResult bindingResult
     ) {
-        // TODO : 질문 저장 구현
+        if (bindingResult.hasErrors()) {
+            return "question_form";
+        }
+        this.questionService.create(
+                questionForm.getSubject(),
+                questionForm.getContent()
+        );
         return "redirect:/question/list";
     }
 }
