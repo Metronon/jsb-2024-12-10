@@ -13,10 +13,10 @@ class SbbApplicationTests {
 
     @Test
     void testJpa() {
-        for (int i = 1; i <= 300; i++) {
-            String subject = String.format("[%03d]번째 테스트 데이터 입니다.", i);
+        for (int i = 1; i <= 200; i++) {
+            String subject = String.format("[%03d]번째 작성자 포함 테스트 데이터 입니다.", i);
             String content = "내용 없음";
-            this.questionService.create(subject, content);
+            this.questionService.create(subject, content, null);
         }
     }
 
