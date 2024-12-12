@@ -15,13 +15,14 @@ public class AnswerService {
     private final AnswerRepository answerRepository;
 
     // 답변 생성 기능
-    public void create(Question question, String content, SiteUser author) {
+    public Answer create(Question question, String content, SiteUser author) {
         Answer answer = new Answer();
         answer.setContent(content);
         answer.setCreateDate(LocalDateTime.now());
         answer.setQuestion(question);
         answer.setAuthor(author);
         this.answerRepository.save(answer);
+        return answer;
     }
 
     // 답변 id를 통해 해당 답변 조회
